@@ -1,10 +1,9 @@
 extern crate cgmath;
-use cgmath::{ Vector2, Vector3 };
+use cgmath::{Vector2, Vector3};
 
-use crate::props::{ ray::Ray, color::Color, material::Material };
+use crate::props::{color::Color, material::Material, ray::Ray};
 
 pub trait Drawable {
-
     // Ray computation.
     fn hit(&self, ray: &Ray) -> Option<f64>;
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64>;
@@ -17,9 +16,8 @@ pub trait Drawable {
 }
 
 pub trait Light {
-
-    fn direction_from(&self, hit :Vector3<f64>) -> Vector3<f64>;
-    fn intensity(&self, hit :Vector3<f64>) -> f64;
-    fn distance(&self, hit :Vector3<f64>) -> f64;
+    fn direction_from(&self, hit: Vector3<f64>) -> Vector3<f64>;
+    fn intensity(&self, hit: Vector3<f64>) -> f64;
+    fn distance(&self, hit: Vector3<f64>) -> f64;
     fn color(&self) -> &Color;
 }
