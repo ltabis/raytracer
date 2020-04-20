@@ -8,8 +8,8 @@ use image;
 
 fn main() {
     let scene = rendering::scene::Scene {
-        width: 2000,
-        height: 2000,
+        width: 800,
+        height: 600,
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
