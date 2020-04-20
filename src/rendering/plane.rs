@@ -1,22 +1,20 @@
 extern crate cgmath;
-use cgmath::{ Vector2, Vector3, InnerSpace };
+use cgmath::{InnerSpace, Vector2, Vector3};
 
-use crate::props::{ ray::Ray, material::Material };
+use crate::props::{material::Material, ray::Ray};
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Plane {
-    pub origin:   Vector3<f64>,
-    pub normal:   Vector3<f64>,
-    pub material: Material
+    pub origin: Vector3<f64>,
+    pub normal: Vector3<f64>,
+    pub material: Material,
 }
 
 impl Drawable for Plane {
-
     // A function to calculate the distance between a point on the plane and the origin
     // of the ray. The maths are from scratchpixel.
     fn hit(&self, ray: &Ray) -> Option<f64> {
-
         // We start by calculating the scalar product between the normal vector
         // of the plane and the ray vector. In our equation, il will divide some
         // other stuff, so we need to check if the value is equal to zero.
@@ -47,9 +45,6 @@ impl Drawable for Plane {
     }
 
     fn get_texture_coords(&self, _: Vector3<f64>) -> Vector2<f64> {
-        Vector2 {
-            x: 0.0,
-            y: 0.0
-        }
+        Vector2 { x: 0.0, y: 0.0 }
     }
 }

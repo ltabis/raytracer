@@ -1,22 +1,20 @@
 extern crate cgmath;
-use cgmath::{ Vector2, Vector3, InnerSpace };
+use cgmath::{InnerSpace, Vector2, Vector3};
 
-use crate::props::{ ray::Ray, material::Material };
+use crate::props::{material::Material, ray::Ray};
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Sphere {
-    pub center:   Vector3<f64>,
-    pub radius:   f64,
-    pub material: Material
+    pub center: Vector3<f64>,
+    pub radius: f64,
+    pub material: Material,
 }
 
 impl Drawable for Sphere {
-
     /// A function that calculates the distance between a point hit by the ray
     /// passed as parameter and the camera using the pythagorian formula.
     fn hit(&self, ray: &Ray) -> Option<f64> {
-
         // Square radius of the sphere, we'll need it later to speed up calculations.
         let rad_sqrt = self.radius * self.radius;
 
@@ -45,9 +43,15 @@ impl Drawable for Sphere {
         // This needs to be calculated in case that the ray is cast behind an object.
         let t0 = from_cam - to_intersect;
         let t1 = from_cam + to_intersect;
-         
-        if t0 < 0.0 && t1 < 0.0 { return None; }
-        if t0 < t1 { Some(t0) } else { Some(t1) }
+
+        if t0 < 0.0 && t1 < 0.0 {
+            return None;
+        }
+        if t0 < t1 {
+            Some(t0)
+        } else {
+            Some(t1)
+        }
     }
 
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64> {
@@ -59,7 +63,6 @@ impl Drawable for Sphere {
     }
 
     fn get_texture_coords(&self, hit: Vector3<f64>) -> Vector2<f64> {
-
         let hit_vector = hit - self.center;
 
         Vector2 {
