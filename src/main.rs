@@ -8,8 +8,8 @@ use image;
 
 fn main() {
     let scene = rendering::scene::Scene {
-        width: 1920,
-        height: 1080,
+        width: 8_192,
+        height: 8_192,
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
@@ -109,5 +109,6 @@ fn main() {
         Some(image) => image,
         None => panic!("There is no object to render."),
     };
+    
     img.save("test.png").unwrap();
 }
