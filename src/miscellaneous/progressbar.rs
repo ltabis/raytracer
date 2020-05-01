@@ -1,7 +1,10 @@
 use std::io;
 use std::io::prelude::*;
 use std::sync::mpsc;
-use std::{time, thread::{self}};
+use std::{
+    thread::{self},
+    time,
+};
 use time::Instant;
 
 pub struct ProgressBar {
@@ -29,7 +32,8 @@ impl ProgressBar {
                 let remaining = (lines as usize) - completed;
                 let percentage = (progress / max * 100.0) as usize;
 
-                print!("\r[{}] {}% [{}{}]",
+                print!(
+                    "\r[{}] {}% [{}{}]",
                     loading[i],
                     percentage,
                     "*".repeat(completed),
@@ -37,12 +41,13 @@ impl ProgressBar {
                 );
 
                 total_time = now.elapsed().as_secs_f64();
-                i = (i + 
-                    if total_time > 0.25f64 { 
-                        now = Instant::now(); 1 
-                    } else { 0 }
-                ) % 4;
-                       
+                i = (i + if total_time > 0.25f64 {
+                    now = Instant::now();
+                    1
+                } else {
+                    0
+                }) % 4;
+
                 // TODO : Better error handling.
                 io::stdout().flush().ok().expect("Could not flush stdout");
             }
