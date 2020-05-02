@@ -2,8 +2,7 @@ use raytracer::props::ray::Ray;
 
 #[test]
 fn instantiate_ray_test() {
-
-    let ray_1: Ray = Ray::new(10.0, 2.5, 5.5);
+    let ray_1: Ray = Ray::new((10.0, 2.5, 5.5).into(), (0.0, 0.0, 0.0).into());
 
     assert_eq!(ray_1.origin.x, 10.0);
     assert_eq!(ray_1.origin.y, 2.5);
