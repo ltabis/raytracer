@@ -8,9 +8,9 @@ use image;
 
 fn main() {
     let scene = rendering::scene::Scene {
-        width: 8_192,
-        height: 8_192,
-        fov: 90.0,
+        width: 1024,
+        height: 1024,
+        fov: 120.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(0.0, 2.0, -3.0),
