@@ -27,7 +27,7 @@ fn wrap(val: f32, bound: u32) -> u32 {
 impl Texture {
     pub fn color(&self, texture_coords: Vector2<f64>) -> Color {
         match *self {
-            Texture::ColorTexture(ref color) => Color::clone(color),
+            Texture::ColorTexture(ref color) => color.clone(),
             Texture::ImageTexture(ref texture) => {
                 let tex_x = wrap(texture_coords.x as f32, texture.width());
                 let tex_y = wrap(texture_coords.y as f32, texture.height());
